@@ -184,7 +184,11 @@ extern "C" void* ThreadCrawler(void* data) {
       res.nHeight = 0;
       res.strClientV = "";
       bool getaddr = res.ourLastSuccess + 86400 < now;
-      res.fGood = TestNode(res.service,res.nBanTime,res.nClientV,res.strClientV,res.nHeight,getaddr ? &addr : NULL);
+      if (res.service.GetPort() == GetDefaultPort()) {
+          res.fGood = TestNode(res.service,res.nBanTime,res.nClientV,res.strClientV,res.nHeight,getaddr ? &addr : NULL);
+      } else {
+          res.fGood = false;
+      }
     }
     db.ResultMany(ips);
     db.Add(addr);
@@ -377,14 +381,6 @@ extern "C" void* ThreadStats(void*) {
     strftime(c, 256, "[%y-%m-%d %H:%M:%S]", tmp);
     CAddrDbStats stats;
     db.GetStats(stats);
-    if (first)
-    {
-      first = false;
-      printf("\n\n\n\x1b[3A");
-    }
-    else
-      printf("\x1b[2K\x1b[u");
-    printf("\x1b[s");
     uint64_t requests = 0;
     uint64_t queries = 0;
     for (unsigned int i=0; i<dnsThread.size(); i++) {
@@ -392,7 +388,8 @@ extern "C" void* ThreadStats(void*) {
       queries += dnsThread[i]->dbQueries;
     }
     printf("%s %i/%i available (%i tried in %is, %i new, %i active), %i banned; %llu DNS requests, %llu db queries", c, stats.nGood, stats.nAvail, stats.nTracked, stats.nAge, stats.nNew, stats.nAvail - stats.nTracked - stats.nNew, stats.nBanned, (unsigned long long)requests, (unsigned long long)queries);
-    Sleep(1000);
+    printf("\n");
+    Sleep(10000);
   } while(1);
   return nullptr;
 }
