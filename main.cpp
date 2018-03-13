@@ -184,11 +184,7 @@ extern "C" void* ThreadCrawler(void* data) {
       res.nHeight = 0;
       res.strClientV = "";
       bool getaddr = res.ourLastSuccess + 86400 < now;
-      if (res.service.GetPort() == GetDefaultPort()) {
-          res.fGood = TestNode(res.service,res.nBanTime,res.nClientV,res.strClientV,res.nHeight,getaddr ? &addr : NULL);
-      } else {
-          res.fGood = false;
-      }
+      res.fGood = TestNode(res.service,res.nBanTime,res.nClientV,res.strClientV,res.nHeight,getaddr ? &addr : NULL);
     }
     db.ResultMany(ips);
     db.Add(addr);
@@ -394,7 +390,7 @@ extern "C" void* ThreadStats(void*) {
   return nullptr;
 }
 
-static const string mainnet_seeds[] = {"na1.zclassic.org","seed.zcl.chains.run",""};
+static const string mainnet_seeds[] = {"dnsseed.btcprivate.org",""};
 static const string testnet_seeds[] = {""};
 static const string *seeds = mainnet_seeds;
 
@@ -452,10 +448,10 @@ int main(int argc, char **argv) {
   bool fDNS = true;
   if (opts.fUseTestNet) {
       printf("Using testnet.\n");
-      pchMessageStart[0] = 0x0b;
-      pchMessageStart[1] = 0x11;
-      pchMessageStart[2] = 0x09;
-      pchMessageStart[3] = 0x07;
+      pchMessageStart[0] = 0xf6;
+      pchMessageStart[1] = 0x1b;
+      pchMessageStart[2] = 0xf6;
+      pchMessageStart[3] = 0xd6;
       seeds = testnet_seeds;
       fTestNet = true;
   }
