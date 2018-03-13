@@ -1,7 +1,7 @@
-ZClassic Seeder
+Bitcoin Private Seeder
 ==============
 
-ZClassic-seeder is a crawler for the ZClassic network, based on [bitcoin-seeder](https://github.com/sipa/bitcoin-seeder),  which exposes a list
+btcp-seeder is a crawler for the BTCP network, based on [bitcoin-seeder](https://github.com/sipa/bitcoin-seeder),  which exposes a list
 of reliable nodes via a built-in DNS server.
 
 Features:
