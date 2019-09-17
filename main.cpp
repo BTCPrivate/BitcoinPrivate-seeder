@@ -390,7 +390,7 @@ extern "C" void* ThreadStats(void*) {
   return nullptr;
 }
 
-static const string mainnet_seeds[] = {"dnsseed.btcprivate.org",""};
+static const string mainnet_seeds[] = {"dnsseed.btcprivate.org","explorer.btcprivate.org",""};
 static const string testnet_seeds[] = {""};
 static const string *seeds = mainnet_seeds;
 
