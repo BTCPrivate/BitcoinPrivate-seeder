@@ -82,17 +82,17 @@ public:
           host = optarg;
           break;
         }
-        
+
         case 'm': {
           mbox = optarg;
           break;
         }
-        
+
         case 'n': {
           ns = optarg;
           break;
         }
-        
+
         case 't': {
           int n = strtol(optarg, NULL, 10);
           if (n > 0 && n < 1000) nThreads = n;
@@ -390,7 +390,7 @@ extern "C" void* ThreadStats(void*) {
   return nullptr;
 }
 
-static const string mainnet_seeds[] = {"dnsseed.btcprivate.org","explorer.btcprivate.org",""};
+static const string mainnet_seeds[] = {"dnsseed.btcprivate.org","explorer.btcprivate.org","dnsseed.interbiznw.com",""};
 static const string testnet_seeds[] = {""};
 static const string *seeds = mainnet_seeds;
 

@@ -7,8 +7,8 @@ of reliable nodes via a built-in DNS server.
 Features:
 * regularly revisits known nodes to check their availability
 * bans nodes after enough failures, or bad behaviour
-* accepts nodes down to protocol version 180004 to request new IP addresses from,
-  but only reports good (180005) nodes.
+* accepts nodes down to protocol version 180005 to request new IP addresses from,
+  but only reports good (180006) nodes.
 * keeps statistics over (exponential) windows of 2 hours, 8 hours,
   1 day and 1 week, to base decisions on.
 * very low memory (a few tens of megabytes) and cpu requirements.
